@@ -4,7 +4,7 @@ from future.moves.tkinter import ttk
 dict = ['#0', '#1', '#2']
 
 
-def NextFit(blockSize, m, processSize, n):
+def FIFO(blockSize, m, processSize, n):
     # Stores block id of the block
     # allocated to a process
 
@@ -49,12 +49,12 @@ def NextFit(blockSize, m, processSize, n):
     return colunas, conteudo
 
 
-blockSize = [7, 9, 3]
-processSize = [2, 1, 5]
+blockSize = [10, 15, 20]
+processSize = [5, 10, 15]
 m = len(blockSize)
 n = len(processSize)
 
-nomecolunas, conteudo = NextFit(blockSize, m, processSize, n)
+nomecolunas, conteudo = FIFO(blockSize, m, processSize, n)
 # print(nomecolunas)
 # print(conteudo)
 
@@ -62,7 +62,7 @@ nomecolunas, conteudo = NextFit(blockSize, m, processSize, n)
 janela = tk.Tk()
 LARGURA = 300
 ALTURA = 200
-janela.title('NextFit')
+janela.title('FIFO')
 janela.resizable(0, 0)
 janela.geometry("%dx%d" % (LARGURA, ALTURA))
 janela.config(bg='#B0C4DE')
