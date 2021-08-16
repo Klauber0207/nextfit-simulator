@@ -22,7 +22,7 @@ janela = tk.Tk()
 LARGURA = 270
 ALTURA = 270
 janela.title('FIFO')
-janela.resizable(1, 1)
+janela.resizable(False, False)
 janela.geometry("%dx%d" % (LARGURA, ALTURA))
 janela.config(bg='#B0C4DE')
 
