@@ -5,7 +5,7 @@ import pandas as pd
 
 # Dados
 link = "C:/Users/klaub/PycharmProjects/nextfit-simulator/src/page.csv"
-NUMERODEPAGINASPADRAO = 6
+NUMERODEPAGINASPADRAO = 7
 vetor = []
 pageid = pd.read_csv(link, usecols=['id']).values.tolist()
 pagetempo = pd.read_csv(link, usecols=['tempo']).values.tolist()
@@ -44,6 +44,19 @@ tabela.pack(pady=5, padx=3)
 container = tk.Frame(master=janela, bg='black').pack()
 
 
+#   Pop-Up
+def pop_up():
+    popup = tk.Tk(janela)
+    popup.title("Nova Pagina")
+
+
+#   teste
+def pop_up():
+    inputDialog = MyDialog(janela)
+    janela.wait_window(inputDialog.top)
+    return (inputDialog.id)
+
+
 def nova_pagina():
     print("Nova Paginaaaa")
 
@@ -55,14 +68,19 @@ def nova_pagina():
             maior = pagetempo[i][0]
             idmaior = pageid[i][0]
             aux = i
-#    print("maior é a pagina", idmaior,"de tempo", maior)
-    novapagid = input("Entre com o id da nova pagina: ")
+    novapagid = pop_up()
+
     pageid[aux][0] = novapagid
+
+    for i in range(0, NUMERODEPAGINASPADRAO):
+        pagetempo[i][0] = pagetempo[i][0] + 2
+
     pagetempo[aux][0] = 0
-    tabela.item(aux, text=pageid[aux][0], values=[pagetempo[aux][0]])
+
+    for i in range(0, NUMERODEPAGINASPADRAO):
+        tabela.item(i, text=pageid[i][0], values=[pagetempo[i][0]])
 
 
 #   Botão
 botao1 = tk.Button(master=container, text="Page foult", command=lambda: nova_pagina()).pack(anchor=tk.E, padx=3)
-
 tk.mainloop()
